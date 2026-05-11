@@ -4,7 +4,8 @@ numpy>=1.26.0
 
 # ── Machine learning & forecasting ────────────────────────────────────────────
 scikit-learn>=1.4.0
-prophet>=1.1.5          # Meta's time-series forecasting library
+prophet>=1.1.5
+pystan>=3.0.0
 
 # ── API backend ───────────────────────────────────────────────────────────────
 fastapi>=0.111.0
