@@ -22,26 +22,26 @@ This project builds a complete, end-to-end data engineering and analytics system
 ## Screenshots
 
 ### Overview
-![Overview 1](screenshots/Overview_1.png)
-![Overview 2](screenshots/Overview_2.png)
+![Overview 1](screenshots/Overview_1.PNG)
+![Overview 2](screenshots/Overview_2.PNG)
 
 ### Countries
-![Countries 1](screenshots/Countries_1.png)
-![Countries 2](screenshots/Countries_2.png)
-![Countries 3](screenshots/Countries_3.png)
+![Countries 1](screenshots/Countries_1.PNG)
+![Countries 2](screenshots/Countries_2.PNG)
+![Countries 3](screenshots/Countries_3.PNG)
 
 ### Forecasting
-![Forecast 1](screenshots/Forecast_1.png)
-![Forecast 2](screenshots/Forecast_2.png)
+![Forecast 1](screenshots/Forecast_1.PNG)
+![Forecast 2](screenshots/Forecast_2.PNG)
 
 ### Insights
-![Insights 1](screenshots/Insights_1.png)
-![Insights 2](screenshots/Insights_2.png)
+![Insights 1](screenshots/Insights_1.PNG)
+![Insights 2](screenshots/Insights_2.PNG)
 
 ### Methodology
-![Methodology 1](screenshots/Methodology_1.png)
-![Methodology 2](screenshots/Methodology_2.png)
-![Methodology 3](screenshots/Methodology_3.png)
+![Methodology 1](screenshots/Methodology_1.PNG)
+![Methodology 2](screenshots/Methodology_2.PNG)
+![Methodology 3](screenshots/Methodology_3.PNG)
 
 ---
 
