@@ -1,0 +1,73 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# docker-compose.yml
+# ME ESG Analytics Dashboard — full-stack local orchestration
+#
+# Usage:
+#   docker-compose up --build          # first run
+#   docker-compose up                  # subsequent runs (uses cached images)
+#   docker-compose down                # stop and remove containers
+#   docker-compose down -v             # also remove named volumes
+#
+# Services:
+#   api       → FastAPI backend  → http://localhost:8000
+#               Swagger UI       → http://localhost:8000/docs
+#   frontend  → React dashboard  → http://localhost:3000
+# ─────────────────────────────────────────────────────────────────────────────
+
+version: "3.9"
+
+services:
+
+  # ── Backend — FastAPI + Prophet + scikit-learn ─────────────────────────────
+  api:
+    build:
+      context: .                    # project root (so COPY data/ works)
+      dockerfile: backend/Dockerfile
+    container_name: me_esg_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      # Override at runtime: docker-compose up -e LOG_LEVEL=debug
+      - LOG_LEVEL=info
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount data/ so you can refresh CSVs without rebuilding the image.
+      # Also useful during development to persist generated forecasts.
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s        # Prophet takes a moment to import on first run
+    networks:
+      - esg-network
+
+  # ── Frontend — React + nginx ───────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # Bake the API URL into the Vite build.
+        # nginx.conf proxies /api/ to the api service, so we use a relative path.
+        VITE_API_URL: ""
+    container_name: me_esg_frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      api:
+        condition: service_healthy  # wait for API healthcheck to pass
+    networks:
+      - esg-network
+
+# ── Named volumes ──────────────────────────────────────────────────────────────
+# (none currently — data/ is bind-mounted above)
+
+# ── Networks ───────────────────────────────────────────────────────────────────
+networks:
+  esg-network:
+    driver: bridge
+    name: esg-network

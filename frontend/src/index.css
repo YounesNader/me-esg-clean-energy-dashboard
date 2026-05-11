@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ──────────────────────────────────────────────────────────── */
+:root {
+  --bg-base:     #0a0a0f;
+  --bg-surface:  #111118;
+  --bg-card:     #16161f;
+  --bg-raised:   #1c1c28;
+  --border:      rgba(255,255,255,0.06);
+  --border-accent: rgba(0,212,170,0.28);
+  --teal:        #00d4aa;
+  --teal-dim:    rgba(0,212,170,0.12);
+  --blue:        #3b82f6;
+  --amber:       #f59e0b;
+  --red:         #ef4444;
+  --emerald:     #10b981;
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted:     #475569;
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Dot grid background ────────────────────────────────────────────────────── */
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 60%, transparent 100%);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,212,170,0.18); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,212,170,0.35); }
+
+/* ── Card ───────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.18s;
+}
+.card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,212,170,0.07);
+}
+.card:hover::before { opacity: 1; }
+
+.card-accent-top::before { opacity: 1; }
+
+/* ── Skeleton ───────────────────────────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.8s infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+/* ── Page enter animations ──────────────────────────────────────────────────── */
+.page-enter           { animation: fadeUp 0.45s ease both; }
+.page-enter-delay-1   { animation: fadeUp 0.45s 0.07s ease both; }
+.page-enter-delay-2   { animation: fadeUp 0.45s 0.14s ease both; }
+.page-enter-delay-3   { animation: fadeUp 0.45s 0.21s ease both; }
+.page-enter-delay-4   { animation: fadeUp 0.45s 0.28s ease both; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Recharts overrides ─────────────────────────────────────────────────────── */
+.recharts-tooltip-wrapper { outline: none !important; }
+.recharts-default-tooltip {
+  background: #16161f !important;
+  border: 1px solid rgba(0,212,170,0.28) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.6) !important;
+}
+.recharts-tooltip-label { color: #00d4aa !important; font-weight: 600 !important; font-family: 'IBM Plex Mono', monospace !important; }
+.recharts-cartesian-axis-tick-value { fill: #475569 !important; font-size: 11px !important; font-family: 'IBM Plex Mono', monospace !important; }
+.recharts-legend-item-text { color: #94a3b8 !important; font-size: 12px !important; }
+
+/* ── Ticker animation ───────────────────────────────────────────────────────── */
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll 50s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Topbar progress bar ────────────────────────────────────────────────────── */
+.progress-bar {
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--blue));
+  animation: progressIn 0.8s ease forwards;
+}
+@keyframes progressIn {
+  from { width: 0; opacity: 1; }
+  to   { width: 100%; opacity: 0; }
+}
+
+/* ── Tab styles ─────────────────────────────────────────────────────────────── */
+.tab-btn {
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  font-family: 'IBM Plex Sans', sans-serif;
+  letter-spacing: 0.03em;
+}
+.tab-btn:hover { color: var(--text-secondary); background: rgba(255,255,255,0.04); }
+.tab-btn.active {
+  color: var(--teal);
+  background: rgba(0,212,170,0.10);
+  border-color: rgba(0,212,170,0.25);
+}
+
+/* ── Select overrides ───────────────────────────────────────────────────────── */
+select {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,212,170,0.18);
+  border-radius: 8px;
+  color: var(--text-primary);
+  padding: 8px 32px 8px 12px;
+  font-size: 13px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300d4aa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+select:focus { outline: none; border-color: rgba(0,212,170,0.4); }
+option { background: #16161f; }
+
+/* ── Table ──────────────────────────────────────────────────────────────────── */
+.data-table th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.data-table th:hover { color: var(--text-secondary); }
+.data-table td {
+  padding: 9px 12px;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.data-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* ── Heat matrix cell ───────────────────────────────────────────────────────── */
+.heat-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  transition: transform 0.15s;
+}
+.heat-cell:hover { transform: scale(1.05); }

@@ -1,0 +1,19 @@
+esg-dashboard/
+├── data/                    # Raw + processed datasets
+│   ├── raw/
+│   └── processed/
+├── backend/                 # Python FastAPI
+│   ├── main.py
+│   ├── models/              # ML forecasting models
+│   ├── routers/             # API routes
+│   └── utils/               # Data processing helpers
+├── notebooks/               # Jupyter EDA notebook
+│   └── eda_analysis.ipynb
+├── streamlit_app/           # Streamlit dashboard (deliverable 2)
+│   └── app.py
+├── frontend/                # React dashboard (deliverable 3)
+│   ├── src/
+│   └── public/
+├── requirements.txt
+├── README.md
+└── docker-compose.yml

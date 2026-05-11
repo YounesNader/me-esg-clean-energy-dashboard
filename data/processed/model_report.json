@@ -1,0 +1,51 @@
+{
+  "pipeline": {
+    "data_source": "data/processed/me_esg_clean.csv",
+    "train_years": "2015\u20132021",
+    "test_years": "2022\u20132024",
+    "target_column": "esg_budget_usd_million"
+  },
+  "best_model": "Ridge",
+  "model_metrics": {
+    "Ridge": {
+      "RMSE": 1317.35,
+      "MAE": 822.24,
+      "R2": 0.8618
+    },
+    "RandomForest": {
+      "RMSE": 2099.37,
+      "MAE": 1191.68,
+      "R2": 0.6489
+    }
+  },
+  "feature_importances_random_forest": {
+    "lag_2_budget": 0.297879,
+    "rolling_3yr_avg": 0.22891,
+    "lag_1_budget": 0.169083,
+    "carbon_emissions_mt": 0.142372,
+    "policy_x_gdp": 0.126199,
+    "gdp_usd_billion": 0.016947,
+    "oil_dependency_ratio": 0.013391,
+    "policy_index": 0.003498,
+    "esg_score": 0.00172
+  },
+  "prophet_forecast": {
+    "status": "success",
+    "horizon": "2025\u20132030",
+    "regressors_used": [
+      "gdp_usd_billion",
+      "policy_index",
+      "oil_revenue_usd_billion"
+    ],
+    "mean_predicted_budget_by_country": {
+      "Bahrain": 918.07,
+      "Egypt": 1415.02,
+      "Jordan": 728.23,
+      "Kuwait": 3465.64,
+      "Oman": 2595.27,
+      "Qatar": 5684.76,
+      "Saudi Arabia": 18737.97,
+      "UAE": 15071.72
+    }
+  }
+}
