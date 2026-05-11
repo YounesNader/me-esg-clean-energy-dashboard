@@ -17,6 +17,7 @@ import streamlit as st
 ROOT = Path(__file__).parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).parent / "pages"))
 
 from utils import GLOBAL_CSS, load_clean, load_forecasts
 
