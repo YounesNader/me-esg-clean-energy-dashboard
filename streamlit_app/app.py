@@ -13,11 +13,11 @@ from pathlib import Path
 
 import streamlit as st
 
-# ── Make project root importable ──────────────────────────────────────────────
+# ── Make project root and streamlit_app/ importable ───────────────────────────
 ROOT = Path(__file__).parents[1]
+HERE = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(Path(__file__).parent))
-sys.path.insert(0, str(Path(__file__).parent / "pages"))
+sys.path.insert(0, str(HERE))
 
 from utils import GLOBAL_CSS, load_clean, load_forecasts
 
@@ -72,17 +72,17 @@ with st.sidebar:
 
 # ── Route to pages ────────────────────────────────────────────────────────────
 if page == "🏠 Overview":
-    from pages.overview import render
+    from overview import render
     render()
 elif page == "📊 Country Deep Dive":
-    from pages.country_deep_dive import render
+    from country_deep_dive import render
     render()
 elif page == "🔮 Forecasting":
-    from pages.forecasting import render
+    from forecasting import render
     render()
 elif page == "🌿 ESG Score Analysis":
-    from pages.esg_analysis import render
+    from esg_analysis import render
     render()
 elif page == "ℹ️ About & Methodology":
-    from pages.about import render
+    from about import render
     render()
