@@ -11,6 +11,16 @@
 
 ---
 
+## 🌐 Live Demo
+
+| Service | URL |
+|---|---|
+| React Dashboard | https://me-esg-clean-energy-dashboard.vercel.app/ |
+| FastAPI + Swagger | https://me-esg-clean-energy-dashboard.onrender.com/ |
+| Streamlit EDA | https://younes-nader-esg-dashboard.streamlit.app/ |
+
+---
+
 ## About
 
 The Middle East is simultaneously the world's largest hydrocarbon exporter and one of the regions most acutely exposed to climate change — temperatures projected to rise 2–4°C above the global mean by 2050 threaten water security, habitability, and agricultural viability across the Gulf, Levant, and North Africa. This tension has triggered a structural policy shift: sovereign wealth funds including Saudi Arabia's Public Investment Fund (>$700B AUM), Abu Dhabi's Mubadala, and the Qatar Investment Authority have committed hundreds of billions to clean energy transition. National visions — **Saudi Vision 2030**, **UAE Net Zero 2050**, **Qatar National Vision 2030** — have embedded ESG targets into state planning at the highest level.
