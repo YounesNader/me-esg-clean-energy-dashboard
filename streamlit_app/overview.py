@@ -136,9 +136,8 @@ def render() -> None:
             template=PLOTLY_TEMPLATE,
             paper_bgcolor="rgba(0,0,0,0)",
             coloraxis_colorbar=dict(
-                title="USD M",
+                title=dict(text="USD M", font=dict(color="#8B949E")),
                 tickfont=dict(color="#8B949E"),
-                titlefont=dict(color="#8B949E"),
             ),
             margin=dict(l=0, r=0, t=40, b=0),
             height=400,
