@@ -121,6 +121,7 @@ def render() -> None:
             scope="asia",
             center={"lat": 26, "lon": 48},
             projection_scale=3.5,
+            bgcolor="rgba(0,0,0,0)",
             showland=True,
             landcolor="#1C2128",
             showocean=True,
@@ -134,7 +135,6 @@ def render() -> None:
         fig_map.update_layout(
             template=PLOTLY_TEMPLATE,
             paper_bgcolor="rgba(0,0,0,0)",
-            geo_bgcolor="rgba(0,0,0,0)",
             coloraxis_colorbar=dict(
                 title="USD M",
                 tickfont=dict(color="#8B949E"),
